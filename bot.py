@@ -44,7 +44,8 @@ async def help(ctx):
     await ctx.send(embed=embedv)
 
 
-@bot.command()
+@bot.tree.command(name="inzidenz")
+@commands.describe("Zur Ausgabe der COVID-19-Inzidenzwerte für Deutschland, Bundesländer oder Städte. Der Standort wird nach dem eigentlichen Befehl angegeben.")
 async def inzidenz(ctx, location:None):
     now = datetime.now()
 
