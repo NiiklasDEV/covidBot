@@ -1,12 +1,13 @@
 import discord
 from discord.ext import commands
+frpom discord.ext.commands.context import Context
 import deutschland_tageszahlen
 import get_state
 from datetime import datetime
 
 # define all needed variables
 token = "YOUR_TOKEN_HERE"
-bot = commands.Bot(command_prefix="!")
+bot = commands.Bot(command_prefix="/",intents=discord.Intents.all())
 bot.remove_command("help")
 
 all_states = open("states.txt")
@@ -44,8 +45,7 @@ async def help(ctx):
     await ctx.send(embed=embedv)
 
 
-@bot.tree.command(name="inzidenz")
-@commands.describe("Zur Ausgabe der COVID-19-Inzidenzwerte für Deutschland, Bundesländer oder Städte. Der Standort wird nach dem eigentlichen Befehl angegeben.")
+@bot.command(name="inzidenz", aliases=["inzidenzwert", "inzidenzwerte", "inzidenzen", "inzidenzkarte"],description="Zur Ausgabe der COVID-19-Inzidenzwerte für Deutschland, Bundesländer oder Städte. Der Standort wird nach dem eigentlichen Befehl angegeben.")
 async def inzidenz(ctx, location:None):
     now = datetime.now()
 
